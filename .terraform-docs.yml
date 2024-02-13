@@ -1,0 +1,84 @@
+# .terraform-docs.yml
+formatter: "markdown" # this is required
+
+version: "0.17.0"
+
+header-from: main.tf
+footer-from: ""
+
+recursive:
+  enabled: false
+  path: modules
+
+sections:
+  hide: []
+  show: []
+
+  hide-all: false # deprecated in v0.13.0, removed in v0.15.0
+  show-all: true  # deprecated in v0.13.0, removed in v0.15.0
+
+content: |-
+  {{ .Header }}
+
+  ## Overview
+  This module creates a new Rule Collection Group for an Azure Firewall Policy.
+  - Rule Collection Groups form a key part of managing Firewall rules when managing policies using Firewall manager.
+  - Rule Collection Groups reside within a Firewall Policy.
+  - Rule Collections reside within a Rule Collection group
+  - Rules reside within the Rule Collection.
+
+  ![](.images/azRuleNesting.png)
+
+  This module creates the Rule Collection Group, the Rule Collection and the rules within.
+
+  For further details on this approach, please review the official MS documentation (HERE[https://learn.microsoft.com/en-us/azure/firewall/policy-rule-sets]).
+
+  
+  ## Possible ways to manage Azure Firewall Policy
+
+  There are different ways to manage Azure Firewall Rule Collection Groups with Terraform (or any IaC for that matter). One way is to lump everything into a single (mono) repo, under a single policy. 
+  The problem with this approach is that the rule base soon becomes monstrously large. Processing takes longer with each new rule. Over time, the repo becomes unwieldly, with thousands of lines in a single file.
+
+  The other way is to treat each Rule Collection Group as a single state. Maybe as part of an application deployment. 
+  One of the advantages of this is that each application has its own Rule Colelction group, and as the Collection Group is deployed with the app, it follows the same lifecycle.
+  When a `terraform destroy` is run for the app, the firewall Rule Collection Group is destroyed with it. 
+  This helps Firewall management as rules that are obsolete, get decomissioned at the same time as the app. How many times have Firewall rules got clogged up with obsolte rules, that everyone is too afraid to remove becasue 'no one knows if it's needed'.
+
+  As with all deployments, the exact way to use this module depends on your own set of requirements. If one team is 100% respobnsible for all Firewall Rules, then a mono-repo may work fine.
+  If you're trying to shift app teams to be responsible for their own rules (maybe with PR review by a NetSec team), then creating Rule Collection groups with the application infrastructure deployment can be a good option.
+
+
+  ## Example - create a new rule collection group in an existing Azure Firewall Policy.
+  ```hcl
+    {{ include "examples/netRuleCollection/main.tf" }}
+  ```
+
+
+
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}  
+
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 2
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true

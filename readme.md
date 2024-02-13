@@ -118,6 +118,10 @@ list(object({
     rules = optional(list(object({
       name        = string
       description = optional(string, null)
+      protocols = object({
+        type = string # "http" or "https"
+        port = number
+      })
       source_addresses = optional(list)
       source_ip_groups = optional(list)
       destination_fqdn_tags = optional(list)

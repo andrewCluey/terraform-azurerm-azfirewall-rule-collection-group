@@ -12,7 +12,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
   priority           = var.priority
 
   dynamic "network_rule_collection" {
-    for_each = var.network_rule_collection
+    for_each = var.network_rule_collections
     content {
       name     = network_rule_collection.value.name
       action   = network_rule_collection.value.action
@@ -35,7 +35,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
   }
 
   dynamic "application_rule_collection" {
-    for_each = var.application_rule_collection
+    for_each = var.application_rule_collections
     content {
       name     = application_rule_collection.value.name
       action   = application_rule_collection.value.action

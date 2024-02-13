@@ -1,7 +1,7 @@
 
 
 
-module "network_rule_collection" {
+module "new_rule_collection_group" {
   source = "../.."
 
   name                           = "simple_example"
@@ -9,7 +9,7 @@ module "network_rule_collection" {
   firewall_policy_name           = "default_fw_policy"
   firewall_policy_resource_group = "rg-firewall-01"
   
-  network_rule_collection = {
+  network_rule_collections = {
     name     = "rule_collection_group_demo"
     action   = "Allow"
     priority = 10

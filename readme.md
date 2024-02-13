@@ -34,7 +34,7 @@ If you're trying to shift app teams to be responsible for their own rules (maybe
   
 
 
-module "network_rule_collection" {
+module "new_rule_collection_group" {
   source = "../.."
 
   name                           = "simple_example"
@@ -42,7 +42,7 @@ module "network_rule_collection" {
   firewall_policy_name           = "default_fw_policy"
   firewall_policy_resource_group = "rg-firewall-01"
   
-  network_rule_collection = {
+  network_rule_collections = {
     name     = "rule_collection_group_demo"
     action   = "Allow"
     priority = 10
@@ -76,7 +76,35 @@ module "network_rule_collection" {
 
 The following input variables are required:
 
-### <a name="input_application_rule_collection"></a> [application\_rule\_collection](#input\_application\_rule\_collection)
+### <a name="input_firewall_policy_name"></a> [firewall\_policy\_name](#input\_firewall\_policy\_name)
+
+Description: The name of the firewall policy where the new Rule Collection Group will be created.
+
+Type: `string`
+
+### <a name="input_firewall_policy_resource_group"></a> [firewall\_policy\_resource\_group](#input\_firewall\_policy\_resource\_group)
+
+Description: The name of the Resource Group where the Firewall policy resides.
+
+Type: `string`
+
+### <a name="input_name"></a> [name](#input\_name)
+
+Description: The name to assign to the new Rule Collection Group
+
+Type: `string`
+
+### <a name="input_priority"></a> [priority](#input\_priority)
+
+Description: The Priority to assign to the new Rule Collection Group being created.
+
+Type: `number`
+
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### <a name="input_application_rule_collections"></a> [application\_rule\_collections](#input\_application\_rule\_collections)
 
 Description: n/a
 
@@ -94,25 +122,15 @@ list(object({
   }))
 ```
 
-### <a name="input_firewall_policy_name"></a> [firewall\_policy\_name](#input\_firewall\_policy\_name)
+Default:
 
-Description: The name of the firewall policy where the new collection group will be created.
+```json
+[
+  {}
+]
+```
 
-Type: `string`
-
-### <a name="input_firewall_policy_resource_group"></a> [firewall\_policy\_resource\_group](#input\_firewall\_policy\_resource\_group)
-
-Description: The name of the Resource Group where the Firewall policy resides.
-
-Type: `string`
-
-### <a name="input_name"></a> [name](#input\_name)
-
-Description: The name to assign to the new Rule Collection group
-
-Type: `string`
-
-### <a name="input_network_rule_collection"></a> [network\_rule\_collection](#input\_network\_rule\_collection)
+### <a name="input_network_rule_collections"></a> [network\_rule\_collections](#input\_network\_rule\_collections)
 
 Description: n/a
 
@@ -137,15 +155,13 @@ list(object({
   }))
 ```
 
-### <a name="input_priority"></a> [priority](#input\_priority)
+Default:
 
-Description: The Priority to assign to the new rule colelction group being created.
-
-Type: `number`
-
-## Optional Inputs
-
-No optional inputs.
+```json
+[
+  {}
+]
+```
 
 ## Outputs
 

@@ -1,12 +1,12 @@
 
 variable "name" {
   type        = string
-  description = "The name to assign to the new Rule Collection group"
+  description = "The name to assign to the new Rule Collection Group"
 }
 
 variable "firewall_policy_name" {
   type        = string
-  description = "The name of the firewall policy where the new collection group will be created."
+  description = "The name of the firewall policy where the new Rule Collection Group will be created."
 }
 
 variable "firewall_policy_resource_group" {
@@ -16,11 +16,12 @@ variable "firewall_policy_resource_group" {
 
 variable "priority" {
   type        = number
-  description = "The Priority to assign to the new rule colelction group being created."
+  description = "The Priority to assign to the new Rule Collection Group being created."
 }
 
 
-variable "network_rule_collection" {
+variable "network_rule_collections" {
+  default = [ {} ]
   type = list(object({
     name     = string
     action   = string
@@ -41,7 +42,8 @@ variable "network_rule_collection" {
 
 
 
-variable "application_rule_collection" {
+variable "application_rule_collections" {
+  default = [ {} ]
   type = list(object({
     name     = string
     action   = string

@@ -18,7 +18,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
       action   = network_rule_collection.value.action
       priority = network_rule_collection.value.priority
       dynamic "rule" {
-        for_each = network_rule_collection.value.rule
+        for_each = network_rule_collection.value.rules
         content {
           name                  = rule.value.name
           description           = lookup(rule.value, "description", null)           # string

@@ -25,7 +25,7 @@ variable "network_rule_collection" {
     name     = string
     action   = string
     priority = number
-    rule = optional(object({
+    rules = optional(list(object({
       name                  = string
       description           = optional(string, null)
       protocols             = list
@@ -35,6 +35,6 @@ variable "network_rule_collection" {
       destination_fqdns     = optional(list)
       destination_ip_groups = optional(list)
       destination_addresses = optional(list)
-    }))
+    })))
   }))
 }

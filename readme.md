@@ -118,6 +118,12 @@ list(object({
     rules = optional(list(object({
       name        = string
       description = optional(string, null)
+      source_addresses = optional(list)
+      source_ip_groups = optional(list)
+      destination_fqdn_tags = optional(list)
+      destination_fqdns = optional(list)
+      destination_urls = optional(list)
+      destination_addresses = optional(list)
     })))
   }))
 ```
@@ -165,5 +171,17 @@ Default:
 
 ## Outputs
 
-No outputs.  
+The following outputs are exported:
+
+### <a name="output_rule_collection_group_id"></a> [rule\_collection\_group\_id](#output\_rule\_collection\_group\_id)
+
+Description: n/a
+
+### <a name="output_rule_collection_group_name"></a> [rule\_collection\_group\_name](#output\_rule\_collection\_group\_name)
+
+Description: n/a
+
+### <a name="output_rule_collection_group_priority"></a> [rule\_collection\_group\_priority](#output\_rule\_collection\_group\_priority)
+
+Description: n/a  
 <!-- END_TF_DOCS -->

@@ -51,6 +51,12 @@ variable "application_rule_collections" {
     rules = optional(list(object({
       name        = string
       description = optional(string, null)
+      source_addresses = optional(list)
+      source_ip_groups = optional(list)
+      destination_fqdn_tags = optional(list)
+      destination_fqdns = optional(list)
+      destination_urls = optional(list)
+      destination_addresses = optional(list)
     })))
   }))
 }

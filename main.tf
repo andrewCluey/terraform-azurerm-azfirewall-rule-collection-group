@@ -26,9 +26,9 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
           source_addresses      = lookup(rule.value, "source_addresses", [])        # list EXAMPLE - ["10.0.0.0/16",]
           source_ip_groups      = lookup(rule.value, "source_ip_groups", [])        # list
           destination_ports     = rule.value.destination_ports                      # list EXAMPLE - ["53",]
-          destination_fqdns     = lookup(rule.value, "destination_fqdns", null)     # list (DNS Proxy must be enabled to use FQDNs.)
-          destination_ip_groups = lookup(rule.value, "destination_ip_groups", null) # list
-          destination_addresses = lookup(rule.value, "destination_addresses", null) # list EXAMPLE -  ["8.8.8.8","8.8.4.4",]
+          destination_fqdns     = lookup(rule.value, "destination_fqdns", [])     # list (DNS Proxy must be enabled to use FQDNs.)
+          destination_ip_groups = lookup(rule.value, "destination_ip_groups", []) # list
+          destination_addresses = lookup(rule.value, "destination_addresses", []) # list EXAMPLE -  ["8.8.8.8","8.8.4.4",]
         }
       }
     }
@@ -53,12 +53,12 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
               port = protocols.value.port
             }
           }
-          source_addresses      = rule.value.source_addresses
-          source_ip_groups      = rule.value.source_ip_groups
-          destination_fqdn_tags = rule.value.destination_fqdn_tags
-          destination_fqdns     = rule.value.destination_fqdns
-          destination_urls      = rule.value.destination_urls
-          destination_addresses = rule.value.destination_addresses
+          source_addresses      = lookup(rule.value, "source_addresses", [])
+          source_ip_groups      = lookup(rule.value, "source_ip_groups", [])
+          destination_fqdn_tags = lookup(rule.value, "destination_fqdn_tags", [])
+          destination_fqdns     = lookup(rule.value, "destination_fqdns", [])
+          destination_urls      = lookup(rule.value, "destination_urls", [])
+          destination_addresses = lookup(rule.value, "destination_addresses", [])
         }
 
       }

@@ -44,6 +44,7 @@ content: |-
   As with all deployments, the exact way to use this module depends on your own set of requirements. If one team is 100% respobnsible for all Firewall Rules, then a mono-repo may work fine.
   If you're trying to shift app teams to be responsible for their own rules (maybe with PR review by a NetSec team), then creating Rule Collection groups with the application infrastructure deployment can be a good option.
 
+  *readme automatically generated using terraform-docs*
 
   ## Example - create a new rule collection group in an existing Azure Firewall Policy.
   ```hcl

@@ -21,7 +21,7 @@ variable "priority" {
 
 
 variable "network_rule_collections" {
-  default = [ {} ]
+  default = []
   type = list(object({
     name     = string
     action   = string
@@ -29,13 +29,13 @@ variable "network_rule_collections" {
     rules = optional(list(object({
       name                  = string
       description           = optional(string, null)
-      protocols             = list
-      source_addresses      = optional(list)
-      source_ip_groups      = optional(list)
-      destination_ports     = list
-      destination_fqdns     = optional(list)
-      destination_ip_groups = optional(list)
-      destination_addresses = optional(list)
+      protocols             = list(string)
+      source_addresses      = optional(list(string))
+      source_ip_groups      = optional(list(string))
+      destination_ports     = list(number)
+      destination_fqdns     = optional(list(string))
+      destination_ip_groups = optional(list(string))
+      destination_addresses = optional(list(string))
     })))
   }))
 }
@@ -43,7 +43,7 @@ variable "network_rule_collections" {
 
 
 variable "application_rule_collections" {
-  default = [ {} ]
+  default = []
   type = list(object({
     name     = string
     action   = string
@@ -55,12 +55,12 @@ variable "application_rule_collections" {
         type = string # "http" or "https"
         port = number
       })
-      source_addresses = optional(list)
-      source_ip_groups = optional(list)
-      destination_fqdn_tags = optional(list)
-      destination_fqdns = optional(list)
-      destination_urls = optional(list)
-      destination_addresses = optional(list)
+      source_addresses = optional(list(string))
+      source_ip_groups = optional(list(string))
+      destination_fqdn_tags = optional(list(string))
+      destination_fqdns = optional(list(string))
+      destination_urls = optional(list(string))
+      destination_addresses = optional(list(string))
     })))
   }))
 }

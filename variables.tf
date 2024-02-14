@@ -55,11 +55,11 @@ variable "application_rule_collections" {
         type = string # "http" or "https"
         port = number
       })
-      source_addresses = optional(list(string))
-      source_ip_groups = optional(list(string))
+      source_addresses      = optional(list(string))
+      source_ip_groups      = optional(list(string))
       destination_fqdn_tags = optional(list(string))
-      destination_fqdns = optional(list(string))
-      destination_urls = optional(list(string))
+      destination_fqdns     = optional(list(string))
+      destination_urls      = optional(list(string))
       destination_addresses = optional(list(string))
     })))
   }))

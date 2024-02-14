@@ -21,11 +21,11 @@ resource "azurerm_firewall_policy_rule_collection_group" "main" {
         for_each = network_rule_collection.value.rules
         content {
           name                  = rule.value.name
-          description           = lookup(rule.value, "description", null)           # string
-          protocols             = rule.value.protocols                              # list Any of [Any, TCP, UDP, ICMP] 
-          source_addresses      = lookup(rule.value, "source_addresses", [])        # list EXAMPLE - ["10.0.0.0/16",]
-          source_ip_groups      = lookup(rule.value, "source_ip_groups", [])        # list
-          destination_ports     = rule.value.destination_ports                      # list EXAMPLE - ["53",]
+          description           = lookup(rule.value, "description", null)         # string
+          protocols             = rule.value.protocols                            # list Any of [Any, TCP, UDP, ICMP] 
+          source_addresses      = lookup(rule.value, "source_addresses", [])      # list EXAMPLE - ["10.0.0.0/16",]
+          source_ip_groups      = lookup(rule.value, "source_ip_groups", [])      # list
+          destination_ports     = rule.value.destination_ports                    # list EXAMPLE - ["53",]
           destination_fqdns     = lookup(rule.value, "destination_fqdns", [])     # list (DNS Proxy must be enabled to use FQDNs.)
           destination_ip_groups = lookup(rule.value, "destination_ip_groups", []) # list
           destination_addresses = lookup(rule.value, "destination_addresses", []) # list EXAMPLE -  ["8.8.8.8","8.8.4.4",]

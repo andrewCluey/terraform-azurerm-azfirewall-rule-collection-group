@@ -69,123 +69,22 @@ module "new_rule_collection_group" {
 }
 ```
 
+## Inputs
 
-
-
-## Required Inputs
-
-The following input variables are required:
-
-### <a name="input_firewall_policy_name"></a> [firewall\_policy\_name](#input\_firewall\_policy\_name)
-
-Description: The name of the firewall policy where the new Rule Collection Group will be created.
-
-Type: `string`
-
-### <a name="input_firewall_policy_resource_group"></a> [firewall\_policy\_resource\_group](#input\_firewall\_policy\_resource\_group)
-
-Description: The name of the Resource Group where the Firewall policy resides.
-
-Type: `string`
-
-### <a name="input_name"></a> [name](#input\_name)
-
-Description: The name to assign to the new Rule Collection Group
-
-Type: `string`
-
-### <a name="input_priority"></a> [priority](#input\_priority)
-
-Description: The Priority to assign to the new Rule Collection Group being created.
-
-Type: `number`
-
-## Optional Inputs
-
-The following input variables are optional (have default values):
-
-### <a name="input_application_rule_collections"></a> [application\_rule\_collections](#input\_application\_rule\_collections)
-
-Description: n/a
-
-Type:
-
-```hcl
-list(object({
-    name     = string
-    action   = string
-    priority = number
-    rules = optional(list(object({
-      name        = string
-      description = optional(string, null)
-      protocols = object({
-        type = string # "http" or "https"
-        port = number
-      })
-      source_addresses = optional(list)
-      source_ip_groups = optional(list)
-      destination_fqdn_tags = optional(list)
-      destination_fqdns = optional(list)
-      destination_urls = optional(list)
-      destination_addresses = optional(list)
-    })))
-  }))
-```
-
-Default:
-
-```json
-[
-  {}
-]
-```
-
-### <a name="input_network_rule_collections"></a> [network\_rule\_collections](#input\_network\_rule\_collections)
-
-Description: n/a
-
-Type:
-
-```hcl
-list(object({
-    name     = string
-    action   = string
-    priority = number
-    rules = optional(list(object({
-      name                  = string
-      description           = optional(string, null)
-      protocols             = list
-      source_addresses      = optional(list)
-      source_ip_groups      = optional(list)
-      destination_ports     = list
-      destination_fqdns     = optional(list)
-      destination_ip_groups = optional(list)
-      destination_addresses = optional(list)
-    })))
-  }))
-```
-
-Default:
-
-```json
-[
-  {}
-]
-```
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_application_rule_collections"></a> [application\_rule\_collections](#input\_application\_rule\_collections) | n/a | <pre>list(object({<br>    name     = string<br>    action   = string<br>    priority = number<br>    rules = optional(list(object({<br>      name        = string<br>      description = optional(string, null)<br>      protocols = object({<br>        type = string # "http" or "https"<br>        port = number<br>      })<br>      source_addresses = optional(list(string))<br>      source_ip_groups = optional(list(string))<br>      destination_fqdn_tags = optional(list(string))<br>      destination_fqdns = optional(list(string))<br>      destination_urls = optional(list(string))<br>      destination_addresses = optional(list(string))<br>    })))<br>  }))</pre> | `[]` | no |
+| <a name="input_firewall_policy_name"></a> [firewall\_policy\_name](#input\_firewall\_policy\_name) | The name of the firewall policy where the new Rule Collection Group will be created. | `string` | n/a | yes |
+| <a name="input_firewall_policy_resource_group"></a> [firewall\_policy\_resource\_group](#input\_firewall\_policy\_resource\_group) | The name of the Resource Group where the Firewall policy resides. | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | The name to assign to the new Rule Collection Group | `string` | n/a | yes |
+| <a name="input_network_rule_collections"></a> [network\_rule\_collections](#input\_network\_rule\_collections) | n/a | <pre>list(object({<br>    name     = string<br>    action   = string<br>    priority = number<br>    rules = optional(list(object({<br>      name                  = string<br>      description           = optional(string, null)<br>      protocols             = list(string)<br>      source_addresses      = optional(list(string))<br>      source_ip_groups      = optional(list(string))<br>      destination_ports     = list(number)<br>      destination_fqdns     = optional(list(string))<br>      destination_ip_groups = optional(list(string))<br>      destination_addresses = optional(list(string))<br>    })))<br>  }))</pre> | `[]` | no |
+| <a name="input_priority"></a> [priority](#input\_priority) | The Priority to assign to the new Rule Collection Group being created. | `number` | n/a | yes |
 
 ## Outputs
 
-The following outputs are exported:
-
-### <a name="output_rule_collection_group_id"></a> [rule\_collection\_group\_id](#output\_rule\_collection\_group\_id)
-
-Description: n/a
-
-### <a name="output_rule_collection_group_name"></a> [rule\_collection\_group\_name](#output\_rule\_collection\_group\_name)
-
-Description: n/a
-
-### <a name="output_rule_collection_group_priority"></a> [rule\_collection\_group\_priority](#output\_rule\_collection\_group\_priority)
-
-Description: n/a  
+| Name | Description |
+|------|-------------|
+| <a name="output_rule_collection_group_id"></a> [rule\_collection\_group\_id](#output\_rule\_collection\_group\_id) | n/a |
+| <a name="output_rule_collection_group_name"></a> [rule\_collection\_group\_name](#output\_rule\_collection\_group\_name) | n/a |
+| <a name="output_rule_collection_group_priority"></a> [rule\_collection\_group\_priority](#output\_rule\_collection\_group\_priority) | n/a |  
 <!-- END_TF_DOCS -->
